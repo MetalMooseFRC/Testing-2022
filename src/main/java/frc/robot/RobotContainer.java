@@ -33,14 +33,11 @@ public class RobotContainer {
   private DriveTrain m_driveTrain = new DriveTrain();
 
 
-
-
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
 
-    
     // ************  Set Default Commands  ***************
 
     
