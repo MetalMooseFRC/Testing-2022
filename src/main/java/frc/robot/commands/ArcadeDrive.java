@@ -4,20 +4,22 @@
 
 package frc.robot.commands;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
 public class ArcadeDrive extends CommandBase {
 
   private final DriveTrain m_driveTrain;
-  private Double speed;
-  private Double turn;
+  private DoubleSupplier speed;
+  private DoubleSupplier turn;
 
 
   /** Creates a new ArcadeDrive. */
-  public ArcadeDrive(Double speed, Double turn, DriveTrain driveTrain) {
+  public ArcadeDrive(DoubleSupplier speed, DoubleSupplier turn, DriveTrain driveTrain) {
     // Use addRequirements() here to declare subsystem dependencies.
-    
+  
     m_driveTrain = driveTrain;
     addRequirements(m_driveTrain);
 
@@ -35,7 +37,7 @@ public class ArcadeDrive extends CommandBase {
   @Override
   public void execute() {
   
-    m_driveTrain.drive.arcadeDrive(speed, turn, true);
+    m_driveTrain.drive.arcadeDrive(speed.getAsDouble(), turn.getAsDouble(), true);
 
   }
   
