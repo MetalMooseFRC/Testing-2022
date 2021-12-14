@@ -12,12 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 
- 
-
-
-
 public class DriveTrain extends SubsystemBase {
-
 
   //Wheel Motors
   private final CANSparkMax m_motorLeft1 = new CANSparkMax(Constants.MOTOR_LEFT_1_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -28,6 +23,7 @@ public class DriveTrain extends SubsystemBase {
   private final CANSparkMax m_motorRight1 = new CANSparkMax(Constants.MOTOR_RIGHT_1_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
   private final CANSparkMax m_motorRight2 = new CANSparkMax(Constants.MOTOR_RIGHT_2_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
   private final CANSparkMax m_motorRight3 = new CANSparkMax(Constants.MOTOR_RIGHT_3_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
+  
   private final SpeedControllerGroup m_motorsRight = new SpeedControllerGroup(m_motorRight1, m_motorRight2, m_motorRight3);
   
   public final DifferentialDrive drive = new DifferentialDrive(m_motorsLeft, m_motorsRight);
@@ -35,19 +31,13 @@ public class DriveTrain extends SubsystemBase {
  
   /** Creates a new DriveTrain. */
   public DriveTrain() {
-
-      m_motorsRight.setInverted(true);
-    
-    
+    // We don't want to set the motors as inverted. 
+    // m_motorsRight.setInverted(true);
   }
-
-  
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
-
-
  
 }
