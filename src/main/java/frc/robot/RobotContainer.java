@@ -8,9 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.subsystems.DriveTrain;
 
-import frc.robot.commands.*;
-import frc.robot.subsystems.*;
-import edu.wpi.first.wpilibj2.command.*;
+
 
 
 /**
@@ -40,12 +38,9 @@ public class RobotContainer {
 
     // ************  Set Default Commands  ***************
 
-    
-    
     m_driveTrain.setDefaultCommand(new ArcadeDrive(
-      0.5, 0.0, 
-      //() -> applyJoystickDeadband(-driverStick.getY()) * Constants.JOYSTICK_SPEED_FACTOR,
-      //() -> applyJoystickDeadband(-driverStick.getZ()) * Constants.JOYSTICK_TURN_FACTOR,
+      () -> applyJoystickDeadband(-driverStick.getY()) * Constants.JOYSTICK_SPEED_FACTOR,
+      () -> applyJoystickDeadband(driverStick.getZ()) * Constants.JOYSTICK_TURN_FACTOR,
       m_driveTrain));
     
   }
@@ -72,7 +67,7 @@ public class RobotContainer {
 
 
   //Allow for dead areas on the joystick
-  public double applyJoystickDeadBand(double originalValue) {
+  public double applyJoystickDeadband(double originalValue) {
     //zero small inputs
     if (Math.abs(originalValue) < Constants.MIN_JOYSTICK_INPUT) return 0;
 
