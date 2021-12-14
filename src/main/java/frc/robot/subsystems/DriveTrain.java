@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -15,6 +16,9 @@ import frc.robot.Constants;
 import com.kauailabs.navx.frc.AHRS;
 
 public class DriveTrain extends SubsystemBase {
+
+  // NavX for orientation / gyroscope measurements
+  private AHRS navx = new AHRS(Port.kMXP);
 
   //Wheel Motors
   private final CANSparkMax m_motorLeft1 = new CANSparkMax(Constants.MOTOR_LEFT_1_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -41,5 +45,17 @@ public class DriveTrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
- 
+   /** Gyro methods */
+
+  //get angle ranging from 0 to 360
+  public double getHeading() {
+    return navx.getYaw();
+  }
+  public double getAngle() {
+    return navx.getAngle();
+  }
+  //zero heading
+  public void resetHeading() {
+    navx.reset();
+  }
 }
