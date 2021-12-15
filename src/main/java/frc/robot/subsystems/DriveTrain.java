@@ -37,8 +37,6 @@ public class DriveTrain extends SubsystemBase {
  
   /** Creates a new DriveTrain. */
   public DriveTrain() {
-    // We don't want to set the motors as inverted. 
-    // m_motorsRight.setInverted(true);
   }
 
   @Override
