@@ -4,44 +4,40 @@
 
 package frc.robot.commands;
 
-import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
-public class ArcadeDrive extends CommandBase {
+
+//******** Use .withTimeout() when calling this function to return control to joystick *********
+
+public class DriveArcade extends CommandBase {
 
   private final DriveTrain m_driveTrain;
-  private DoubleSupplier speed;
-  private DoubleSupplier turn;
+  private double m_speed, m_turn, m_time;
 
+  /** Creates a new DriveForTime. */
+  public DriveArcade(double speed, double turn, DriveTrain driveTrain) {
 
-  /** Creates a new ArcadeDrive. */
-  public ArcadeDrive(DoubleSupplier speed, DoubleSupplier turn, DriveTrain driveTrain) {
-    // Use addRequirements() here to declare subsystem dependencies.
-  
+    m_speed = speed;
+    m_turn = turn;
     m_driveTrain = driveTrain;
+    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_driveTrain);
 
-    this.speed = speed;
-    this.turn = turn;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_driveTrain.resetHeading();
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  
-    m_driveTrain.drive.arcadeDrive(speed.getAsDouble(), turn.getAsDouble(), true);
-    System.out.println(m_driveTrain.getAngle());
-    
+    m_driveTrain.drive.arcadeDrive(m_speed, m_turn);
   }
-  
+
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}

@@ -27,5 +27,9 @@ public final class Constants {
 	public static final double MIN_JOYSTICK_INPUT = 0.1;
 	public static final double JOYSTICK_SPEED_FACTOR = 1.2;
 	public static final double JOYSTICK_TURN_FACTOR = 1.2;
+	
+	
+	public static final double TARGET_HEIGHT = 57;  //inches
+	public static final double LIMELIGHT_HEIGHT = 39.25; //inches
 
 }

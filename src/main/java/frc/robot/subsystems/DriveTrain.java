@@ -4,11 +4,31 @@
 
 package frc.robot.subsystems;
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 // NavX
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.I2C.Port;
 
 // Motors
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+=======
+<<<<<<< Updated upstream
+=======
+// NavX
+//import com.kauailabs.navx.frc.AHRS;
+//import edu.wpi.first.wpilibj.I2C.Port;
+
+// Motors
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -25,7 +45,7 @@ import com.kauailabs.navx.frc.AHRS;
 public class DriveTrain extends SubsystemBase {
 
   // NavX for orientation / gyroscope measurements
-  private AHRS navx = new AHRS(Port.kMXP);
+ // private AHRS navx = new AHRS(Port.kMXP);
 
   //Wheel Motors
   private final CANSparkMax m_motorLeft1 = new CANSparkMax(Constants.MOTOR_LEFT_1_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -36,7 +56,6 @@ public class DriveTrain extends SubsystemBase {
   private final CANSparkMax m_motorRight1 = new CANSparkMax(Constants.MOTOR_RIGHT_1_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
   private final CANSparkMax m_motorRight2 = new CANSparkMax(Constants.MOTOR_RIGHT_2_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
   private final CANSparkMax m_motorRight3 = new CANSparkMax(Constants.MOTOR_RIGHT_3_ID, CANSparkMaxLowLevel.MotorType.kBrushless);
-  
   private final SpeedControllerGroup m_motorsRight = new SpeedControllerGroup(m_motorRight1, m_motorRight2, m_motorRight3);
   
   public final DifferentialDrive drive = new DifferentialDrive(m_motorsLeft, m_motorsRight);
@@ -53,6 +72,7 @@ public class DriveTrain extends SubsystemBase {
   }
    /** Gyro methods */
 
+   /*
   //get angle ranging from 0 to 360
   public double getHeading() {
     return navx.getYaw();
@@ -63,5 +83,5 @@ public class DriveTrain extends SubsystemBase {
   //zero heading
   public void resetHeading() {
     navx.reset();
-  }
+  } */
 }
