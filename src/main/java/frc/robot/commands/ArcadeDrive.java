@@ -30,7 +30,7 @@ public class ArcadeDrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    m_driveTrain.resetHeading();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -38,7 +38,8 @@ public class ArcadeDrive extends CommandBase {
   public void execute() {
   
     m_driveTrain.drive.arcadeDrive(speed.getAsDouble(), turn.getAsDouble(), true);
-
+    System.out.println(m_driveTrain.getAngle());
+    
   }
   
   // Called once the command ends or is interrupted.
