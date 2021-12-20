@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 // NavX
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.I2C.Port;
@@ -12,6 +13,8 @@ import edu.wpi.first.wpilibj.I2C.Port;
 // Motors
 =======
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 <<<<<<< Updated upstream
 =======
@@ -22,6 +25,9 @@ import edu.wpi.first.wpilibj.I2C.Port;
 // Motors
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
