@@ -4,9 +4,18 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.HttpCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.commands.ArcadeDrive;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.commands.DriveArcade;
+import frc.robot.commands.DriveArcadeWithJoystick;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Limelight;
 
 
 
@@ -20,8 +29,7 @@ import frc.robot.subsystems.DriveTrain;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
-  //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
+  
 
   // ************  OI Controller  ***************
   private static final Joystick driverStick = new Joystick(Constants.DRIVER_STICK_PORT);
@@ -29,6 +37,14 @@ public class RobotContainer {
 
   // ************  SubSystems  ***************
   private DriveTrain m_driveTrain = new DriveTrain();
+  private Limelight m_limelight = new Limelight();
+  
+  //Shuffleboard
+  private final ShuffleboardTab competeTab =Shuffleboard.getTab("Compete");
+  private final SendableChooser<Command> autoChooser = new SendableChooser<>();
+
+  
+  private final HttpCamera limelightStream = new HttpCamera("limelight", "http://10.13.91.11:5800");
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -36,9 +52,29 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
+    CameraServer.getInstance().startAutomaticCapture(limelightStream);
+
+    // Configure autonomous options in Shuffleboard
+    autoChooser.setDefaultOption("Score 3", new InstantCommand());
+    autoChooser.addOption("Drive for Three", new DriveArcade(0.5, 0.0, m_driveTrain).withTimeout(3.0));
+
+    competeTab.add(autoChooser);
+
+    // Put some buttons on the Shuffleboard
+    competeTab.add("Drive for 5", new DriveArcade(.5, 0.0, m_driveTrain).withTimeout(5));
+
+    // Put some data on the Shuffleboard
+    competeTab.add("Limelight Tx", m_limelight.getTx());
+    competeTab.add("Limelight Ty", m_limelight.getTy());
+    competeTab.add("Limelight Ta", m_limelight.getTa());
+    competeTab.add("Limelight Has Target?", m_limelight.hasValidTarget());
+    competeTab.add("Distance to Target", m_limelight.getDistance());
+    
+
+
     // ************  Set Default Commands  ***************
 
-    m_driveTrain.setDefaultCommand(new ArcadeDrive(
+    m_driveTrain.setDefaultCommand(new DriveArcadeWithJoystick(
       () -> applyJoystickDeadband(-driverStick.getY()) * Constants.JOYSTICK_SPEED_FACTOR,
       () -> applyJoystickDeadband(driverStick.getZ()) * Constants.JOYSTICK_TURN_FACTOR,
       m_driveTrain));
@@ -58,10 +94,10 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  //public Command getAutonomousCommand() {
+  public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-   // return m_autoCommand;
- // }
+    return autoChooser.getSelected();
+  }
 
       
 
