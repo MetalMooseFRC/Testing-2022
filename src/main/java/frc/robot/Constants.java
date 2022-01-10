@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.revrobotics.ColorMatch;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -32,4 +34,10 @@ public final class Constants {
 	public static final double TARGET_HEIGHT = 57;  //inches
 	public static final double LIMELIGHT_HEIGHT = 39.25; //inches
 
+	// Color Matching
+	private final Color BLUE_TARGET = ColorMatch.makeColor(0.143, 0.427, 0.429);
+	private final Color GREEN_TARGET = ColorMatch.makeColor(0.197, 0.561, 0.240);
+	private final Color RED_TARGET = ColorMatch.makeColor(0.561, 0.232, 0.114);
+	private final Color YELLOW_TARGET = ColorMatch.makeColor(0.361, 0.524, 0.113);
+  
 }
